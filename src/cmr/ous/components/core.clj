@@ -1,9 +1,10 @@
 (ns cmr.ous.components.core
   (:require
-    [cmr.exchange.common.components.config :as config]
+    [cmr.exchange.common.components.config :as base-config]
     [cmr.exchange.common.components.logging :as logging]
     [cmr.http.kit.components.server :as httpd]
     [cmr.metadata.proxy.components.core :as metadata]
+    [cmr.ous.components.config :as config]
     [cmr.ous.config :as config-lib]
     [com.stuartsierra.component :as component]))
 
@@ -13,7 +14,7 @@
 
 (defn cfg
   []
-  {:config (config/create-component (config-lib/data))})
+  {:config (base-config/create-component (config-lib/data))})
 
 (def log
   {:logging (component/using
