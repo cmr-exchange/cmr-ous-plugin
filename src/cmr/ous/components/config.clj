@@ -51,16 +51,16 @@
   (metadata-config-lib/service->url
    (get-in (get-cfg system) [:edsc :search])))
 
-(defn opendap-base-url
-  "This function returns the cmr-opendap URL with a trailing slash, but without
-  the 'opendap' appended."
+(defn service-bridge-base-url
+  "This function returns the cmr-service-bridge URL with a trailing slash, but
+  without the 'service-bridge' appended."
   [system]
   (str
     (metadata-config-lib/service->base-public-url
      (metadata-config/get-service system :service-bridge)) "/"))
 
-(defn opendap-url
-  "This function returns the cmr-opendap URL with a trailing slash."
+(defn service-bridge-url
+  "This function returns the cmr-service-bridge URL with a trailing slash."
   [system]
   (str
     (metadata-config-lib/service->public-url
@@ -87,7 +87,7 @@
 (def get-access-control-url #'authz-config/get-access-control-url)
 (def get-echo-rest-url #'authz-config/get-echo-rest-url)
 (def get-ingest-url #(get-service-url % :ingest))
-(def get-opendap-url #(get-service-url % :service-bridge))
+(def get-service-bridge-url #(get-service-url % :service-bridge))
 (def get-search-url #(get-service-url % :search))
 
 ;; From the HTTPD config component

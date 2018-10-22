@@ -46,7 +46,7 @@
    :docs "resources/public/docs"
    :assets "resources/public/assets"
    :rest-docs
-     {:base-url-template "%%OPENDAP_BASE_URL%%"
+     {:base-url-template "%%SERVICE_BRIDGE_BASE_URL%%"
       :source "resources/docs/rest-api/index.md"
       :outdir "resources/public/docs/service-bridge/docs/current/rest-api"}
    :skip-static #{"/service-bridge/docs"}
