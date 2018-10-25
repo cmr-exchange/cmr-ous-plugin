@@ -6,6 +6,7 @@
     [cmr.metadata.proxy.components.core :as metadata]
     [cmr.ous.components.config :as config]
     [cmr.ous.config :as config-lib]
+    [cmr.plugin.jar.components.registry :as plugin-registry]
     [com.stuartsierra.component :as component]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -20,6 +21,11 @@
   {:logging (component/using
              (logging/create-component)
              [:config])})
+
+(def reg
+  {:plugin (component/using
+            (plugin-registry/create-component)
+            [:config :logging])})
 
 (defn httpd
   [cfg-data]
@@ -52,7 +58,14 @@
   []
   (component/map->SystemMap
     (merge (cfg)
-           log)))
+           log
+           reg)))
+
+(defn initialize-bare-bones-without-logging
+  []
+  (component/map->SystemMap
+    (merge (cfg)
+           reg)))
 
 (defn initialize
   []
@@ -70,7 +83,7 @@
   []
   (let [cfg-data (cfg)]
     (component/map->SystemMap
-      (merge cfg
+      (merge (initialize-bare-bones-without-logging)
              metadata/pubsub-without-logging
              metadata/auth-cache-without-logging
              metadata/authz

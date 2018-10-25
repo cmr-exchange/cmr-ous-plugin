@@ -36,7 +36,7 @@
             :relative {:root {:url "/search"}}}}
  :httpd {
    :port 3013
-   :entry-point-fn nil
+   :entry-point-fn cmr.ous.core/main
    :route-fns {
      :api cmr.ous.app.routes.rest.core/all
      :site cmr.ous.app.routes.site/all}

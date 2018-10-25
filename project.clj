@@ -27,6 +27,7 @@
     [clojusc/twig "0.4.0"]
     [com.stuartsierra/component "0.3.2"]
     [environ "1.1.0"]
+    [gov.nasa.earthdata/cmr-api-versioning "0.1.0-SNAPSHOT"]
     [gov.nasa.earthdata/cmr-authz "0.1.1-SNAPSHOT"]
     [gov.nasa.earthdata/cmr-exchange-common "0.2.0-SNAPSHOT"]
     [gov.nasa.earthdata/cmr-exchange-query "0.2.0-SNAPSHOT"]
@@ -35,7 +36,6 @@
     [gov.nasa.earthdata/cmr-metadata-proxy "0.1.0-SNAPSHOT"]
     [gov.nasa.earthdata/cmr-mission-control "0.1.0-SNAPSHOT"]
     [gov.nasa.earthdata/cmr-site-templates "0.1.0-SNAPSHOT"]
-    [gov.nasa.earthdata/cmr-sizing-plugin "0.1.0-SNAPSHOT"]
     [metosin/ring-http-response "0.9.0"]
     [org.clojure/clojure "1.9.0"]
     [org.clojure/core.async "0.4.474"]
@@ -50,7 +50,9 @@
   :jvm-opts ["-XX:-OmitStackTraceInFastThrow"
              "-Xms2g"
              "-Xmx2g"]
-  :aot [clojure.tools.logging.impl]
+  :aot [clojure.tools.logging.impl
+        cmr.ous.core]
+  :main cmr.ous.core
   :profiles {
     :ubercompile {
       :aot :all
